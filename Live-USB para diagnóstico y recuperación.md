@@ -91,7 +91,9 @@ Ubicados en `/opt/scripts_diag` del sistema live.
 | Red              | NAT            |
 
 - **Descarga una ISO base** (ej. Kali Linux Live)
+  
     ![](imgs/2.png)
+  
     ![](imgs/3.png)
     
 
@@ -106,6 +108,7 @@ Ubicados en `/opt/scripts_diag` del sistema live.
 - **Cárgala como medio de arranque** en la VM.
     
 - **Inicia el sistema Live** sin instalarlo
+  
  ![](imgs/6.png)
 
 Una vez iniciado el sistema en modo Live:
