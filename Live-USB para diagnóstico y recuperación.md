@@ -79,7 +79,8 @@ Ubicados en `/opt/scripts_diag` del sistema live.
 
 ### Crear una VM para pruebas:
 
-![[{9902333C-DF3E-4990-B87D-0FA1A2C03950}.png]]
+![Interfaz de PhotoRec](imgs/1.png)
+
 
 | Hardware         | Recomendado    |
 | ---------------- | -------------- |
