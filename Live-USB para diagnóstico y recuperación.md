@@ -79,7 +79,7 @@ Ubicados en `/opt/scripts_diag` del sistema live.
 
 ### Crear una VM para pruebas:
 
-![Interfaz de PhotoRec](imgs/1.png)
+![](imgs/1.png)
 
 
 | Hardware         | Recomendado    |
@@ -91,22 +91,22 @@ Ubicados en `/opt/scripts_diag` del sistema live.
 | Red              | NAT            |
 
 - **Descarga una ISO base** (ej. Kali Linux Live)
-    ![[{620180B0-DB6C-453D-897A-28520D1B5156}.png]]
-    ![[{8707DA2D-85FD-4255-832F-F525E8D3CEF2} 1.png]]
+    ![](imgs/2.png)
+    ![](imgs/3.png)
     
 
 **Importante habilitar PAE/NX, esto es importante por temas de seguridad ya que muchas distribuciones Linux modernas la requieren para funcionar correctamente, además permite a distribuciones LIVE utilizar más memoria.**
 
-![[{EF8B0FAE-F083-400A-82DC-A3B875E4921E}.png]]
+![](imgs/4.png)
 
 **Deshabilitar EFI, esto se debe a que muchas veces cambiar a modo BIOS suele resolver problemas de arranque de la ISO LIVE**
 
-![[{48D2CB87-C830-4830-9B51-A1708C770DBB}.png]]
+![](imgs/5.png)
 
 - **Cárgala como medio de arranque** en la VM.
     
 - **Inicia el sistema Live** sin instalarlo
- ![[{06E68865-F577-4BD5-8C0B-EA736DA282E5}.png]]
+ ![](imgs/6.png)
 
 Una vez iniciado el sistema en modo Live:
 
@@ -114,7 +114,7 @@ Una vez iniciado el sistema en modo Live:
 
 - Antes de nada nos aseguramos de que nuestra distribución de teclado sea la correcta, en mi caso tenga un teclado español por lo que cambiaré la distribución de teclado para la sesión actual ya que estamos en una versión Live para testing
 
-![[{BAB920B6-C062-482D-8334-503EC4980C89}.png]]
+![](imgs/7.png)
 
 - Instalamos las herramientas que vamos a necesitar para realizar el diagnóstico del sistema:
 
@@ -123,15 +123,15 @@ sudo apt update && sudo apt install -y lshw hwinfo smartmontools testdisk photor
 ```
 
 
-![[{AB93F696-C233-4E7C-B149-CB850AD09E38}.png]]
+![](imgs/8.png)
 
 - **Solución:** Si nos encontramos el siguiente error es normal, se debe a que "testdisk" ya instala automáticamente "Photorec", cómo vemos podemos ejecutarlo.
 
-![[{4F3A4F00-653B-495F-A652-1D9E77C3F9A2}.png]]
+![](imgs/9.png)
 
 - Crearemos una carpeta dónde vamos a almacenar todos los scripts que iremos creando para realizar el diagnóstico
 
-![[{F7EBCD0B-8EB9-44C6-BB6D-37CE7042696F}.png]]
+![](imgs/10.png)
 
 Están escritos para usarse en un entorno Linux Live y pueden ejecutarse directamente desde la terminal.
 
@@ -151,7 +151,7 @@ sudo nano hardware_diag.sh
 
 Diagnóstico rápido de hardware (CPU, RAM, disco, etc.).
 
-![[Pasted image 20250507164214.png]]
+![](imgs/11.png)
 
 *Código del script de bash:*
 
@@ -182,7 +182,7 @@ lshw -short | grep -v "volume" # info general resumida sobre hardware del equipo
 
 Recuperación de datos con `testdisk` y `photorec`.
 
-![[Pasted image 20250507161240.png]]
+![](imgs/12.png)
 
 *Código del script de bash*
 
@@ -214,7 +214,7 @@ esac
 
 Análisis básico con ClamAV, chkrootkit y rkhunter.
 
-![[Pasted image 20250507161138.png]]
+![](imgs/13.png)
 
 *Código del script de bash*
 
@@ -241,7 +241,7 @@ clamscan -r "$path"
 
 Creamos el script para escaneo básico de redes y servicios básicos con las herramientas **Nmap, Nikto y Lynis
 
-![[Pasted image 20250507162315.png]]
+![](imgs/14.png)
 
 *Código del script de bash*
 
@@ -270,8 +270,8 @@ sudo lynis audit system
 ## **Ejecución de los scripts de diagnóstico**
 
 - Una vez tenemos un toolkit básico con scripts en bash para auditar un equipo, pasaremos a ejecutarlo uno por uno en un equipo de pruebas para comprobar los resultados que nos da:
-
-![[Pasted image 20250507162443.png]]
+  
+![](imgs/15.png)
 
 ## **Pasos Previos Comunes**
 
@@ -285,7 +285,7 @@ sudo lynis audit system
 sudo chmod +x *.sh
 ```
 
-![[Pasted image 20250507164950.png]]
+![](imgs/16.png)
 
 *Si estás en un entorno sin persistencia, tendrás que copiar los scripts desde un USB, red o volver a crearlos en cada sesión.*
 
@@ -300,7 +300,7 @@ sudo chmod +x *.sh
 - Información de CPU (`lscpu`)
 - Resumen de hardware (`lshw -short`)
 
-![[Pasted image 20250507165242.png]]
+![](imgs/17.png)
 
 
 - Comprobamos que el script de recuperación de datos funciona correctamente:
@@ -309,15 +309,15 @@ sudo chmod +x *.sh
 ./data_recovery.sh
 ```
 
-![[Pasted image 20250507165507.png]]
+![](imgs/18.png)
 
 - Si seleccionamos cualquiera de las opciones de recuperación de datos accedemos al menú interactivo de la herramienta que hayamos elegido
 
-![[Pasted image 20250507165631.png]]
+![](imgs/19.png)
 
 - Si seleccionamos la herramienta PhotoRec nos aparecerán los dispositivos detectados:
 
-![[Pasted image 20250507165819.png]]
+![](imgs/20.png)
 
 
 
@@ -326,20 +326,20 @@ sudo chmod +x *.sh
 ```
 
 - Análisis con `chkrootkit`, `rkhunter`, y `clamscan`, esperamos a que finalicen los análisis ya que puede tardar bastante
-    ![[Pasted image 20250507170014.png]]
+    ![](imgs/21.png)
 
 - Aquí comprobamos algunas advertencias y comprobaciones detectadas en cierto files que deberíamos investigar más a fondo
 
-![[Pasted image 20250507171104.png]]
+![](imgs/22.png)
 
 
 - Pide que ingreses una ruta a escanear o incluso puedes editar el path o ruta desde el propio script con un editor como nano (ej. `/mnt/sda1`)
 
 *ClamAV escaneando la ruta que le hemos indicado, junto a los resultados obtenidos*
 
-![[Pasted image 20250507170802.png]]
+![](imgs/23.png)
 
-![[Pasted image 20250507171023.png]]
+![](imgs/24.png)
 
 
 
@@ -351,7 +351,7 @@ sudo chmod +x *.sh
 
 - Recomendable ejecutar en otro terminal el escáner de red, ya que pese a que he configurado los scripts de nmap para que sean rápidos, pueden tardar bastante algunas veces dependiendo de la red o rango a analizar, si tardara demasiado puedes usar el otro script comentado.
 
-![[{A70C07EC-2C7E-4B64-A368-511A62532245}.png]]
+![](imgs/25.png)
 
 - Pide una IP o red a escanear (ej;`192.168.100.0/24`)
 - Lanza escaneo con `nmap`
